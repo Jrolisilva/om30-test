@@ -5,20 +5,15 @@ services:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && rails s -b '0.0.0.0'"
     volumes:
-      - ".:/app"
+      - ".:/om30-test"
     ports:
-      - "4000:4000"
-    depends_on:
-      - db
+      - "3000:3000"
 
-  db:
+  postgres:
     image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: data_base_user
-      POSTGRES_PASSWORD: data_base_user
-      POSTGRES_DB: om30-test
-
-volumes:
-  postgres_data:
+      POSTGRES_USER: database_user
+      POSTGRES_PASSWORD: database_user
+      POSTGRES_DB: om30_test
+    ports:
+    - "5432:5432"
