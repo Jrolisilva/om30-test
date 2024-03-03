@@ -5,7 +5,9 @@ class MunicipeController < ApplicationController
     @municipe = Municipe.all
   end
 
-  def show; end
+  def show
+    @municipe = Municipe.find(params[:id])
+  end
 
   def new
     @municipe = Municipe.new
@@ -22,10 +24,12 @@ class MunicipeController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @municipe = Municipe.find(params[:id])
+  end
 
   def update
-    if @municipe.update(municipe_params)
+    if @municipe.update(params[:municipe])
       redirect_to @municipe, notice: 'Municipe was successfully updated.'
     else
       render :edit
@@ -34,16 +38,14 @@ class MunicipeController < ApplicationController
 
   private
 
-  def set_municipe
-    @municipe = Municipe.find(params[:id])
+  def flash_success
+    flash[:notice] = 'Municipe criado com sucesso.'
   end
 
   def municipe_params
-    params.require(:municipe).permit(:name, :cpf, :cns, :email, :birthdate, :phone, :photo, :status,
-                                    endereco_attributes: %i[cep logradouro complemento bairro cidade uf codigo_ibge])
-  end
-
-  def flash_success
-    flash[:notice] = 'Municipe criado com sucesso.'
+    params.require(:municipe).permit(
+      :name, :cpf, :email, :phone, :birthdate, :cns, :status,
+      endereco_attributes: [:cep, :logradouro, :numero, :complemento, :bairro, :cidade, :estado]
+    )
   end
 end
