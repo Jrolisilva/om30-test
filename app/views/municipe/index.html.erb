@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<div class="header">
+  <h1>Municipes</h1>
+  <%# <%= render 'search' %> 
+  <%= link_to '+ Add Municipe', new_municipe_path, class: 'btn-add' %>
+</div>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>CPF</th>
+        <th>CNS</th>
+        <th>Email</th>
+        <th>Birthdate</th>
+        <th>Phone</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody class="" >
+      <% @municipe.each do |municipe| %>
+        <tr>
+          <td><%= municipe.name %></td>
+          <td><%= municipe.cpf %></td>
+          <td><%= municipe.cns %></td>
+          <td><%= municipe.email %></td>
+          <td><%= municipe.birthdate.strftime('%d/%m/%Y') %></td>
+          <td><%= "#{municipe.phone}" %></td>
+          <td><%= municipe.status %></td>
+          <td><%= link_to "Editar", edit_municipe_path(municipe.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

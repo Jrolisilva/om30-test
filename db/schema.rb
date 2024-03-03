@@ -15,13 +15,31 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_03_005145) do
   enable_extension "plpgsql"
 
   create_table "enderecos", force: :cascade do |t|
+    t.string "zipcode", null: false
+    t.string "street", null: false
+    t.string "complement", null: false
+    t.string "district", null: false
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "ibge_code"
+    t.bigint "municipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["municipe_id"], name: "index_enderecos_on_municipe_id"
   end
 
   create_table "municipes", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "cpf", null: false
+    t.string "cns", null: false
+    t.string "email", null: false
+    t.date "birthdate", null: false
+    t.string "phone", null: false
+    t.string "photo", null: false
+    t.boolean "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "enderecos", "municipes"
 end
