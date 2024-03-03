@@ -1,4 +1,4 @@
-<%= form_for @municipe, url: new_municipe_path, method: 'POST' do |f| %>
+<%= form_for @municipe, url: new_municipe_path do |f| %>
   <div style="margin-top: 10px;" >
     <%= f.label :name, "Nome Completo" %>
   </div>
@@ -28,6 +28,57 @@
     <%= f.label :phone, "Telefone"%>
   </div>
     <%= f.text_field :phone, class: 'form-control' %>
+
+  <h3> Upload Foto </h3>
+
+  <div style="margin-top: 10px;">
+    <%= f.label :photo, "Foto" %>
+  </div>
+    <%= f.file_field :photo, class: 'form-control' %>
+
+  <%= f.fields_for :endereco do |e| %>
+    <h3> Endereço </h3>
+    <div style="margin-top: 10px;">
+      <%= e.label :cep, "CEP" %>
+    </div>
+      <%= e.text_field :cep, class: 'form-control' %>
+
+    <div style="margin-top: 10px;">
+      <%= e.label :logradouro, "Logradouro" %>
+    </div>
+      <%= e.text_field :logradouro, class: 'form-control' %>
+
+    <div style="margin-top: 10px;">
+      <%= e.label :numero, "Número" %>
+    </div>
+      <%= e.text_field :numero, class: 'form-control' %>
+
+    <div style="margin-top: 10px;">
+      <%= e.label :complemento, "Complemento" %>
+    </div>
+      <%= e.text_field :complemento, class: 'form-control' %>
+
+    <div style="margin-top: 10px;">
+      <%= e.label :bairro, "Bairro" %>
+    </div>
+      <%= e.text_field :bairro, class: 'form-control' %>
+
+    <div style="margin-top: 10px;">
+      <%= e.label :cidade, "Cidade" %>
+    </div>
+      <%= e.text_field :cidade, class: 'form-control' %>
+
+    <div style="margin-top: 10px;">
+      <%= e.label :estado, "Estado" %>
+    </div>
+      <%= e.text_field :estado, class: 'form-control' %>
+
+    <div style= "margin-top: 10px;">
+      <%= e.label :codigo_ibge, "Codigo IBGE" %>
+    </div>
+      <%= e.text_field :codigo_ibge, class: 'form-control' %>
+
+  <% end %>
 
   <div style="margin-top: 10px;">
     <%= f.label :status %>
