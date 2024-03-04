@@ -5,47 +5,42 @@ class MunicipeController < ApplicationController
     @municipe = Municipe.all
   end
 
-  def show
-    @municipe = Municipe.find(params[:id])
-  end
+  def show; end
 
   def new
     @municipe = Municipe.new
-    @municipe.build_endereco
   end
 
   def create
-    @municipe = Municipe.new(municipe_params)
-    if @municipe.save
-      flash_success
-      redirect_to home_path
+    municipe = Municipe.new(municipe_params)
+
+    if municipe.save
+      render json: municipe, status: :created
     else
-      render :new
+      render json: municipe.errors, status: :unprocessable_entity
     end
   end
 
-  def edit
-    @municipe = Municipe.find(params[:id])
-  end
+  def edit; end
 
   def update
-    if @municipe.update(params[:municipe])
-      redirect_to @municipe, notice: 'Municipe was successfully updated.'
+    if municipe.update(params[:municipe])
+      render json: municipe, status: :ok
     else
-      render :edit
+      render json: municipe.errors, status: :unprocessable_entity
     end
   end
 
   private
 
-  def flash_success
-    flash[:notice] = 'Municipe criado com sucesso.'
+  def set_municipe
+    @municipe = Municipe.find(params[:id])
   end
 
   def municipe_params
     params.require(:municipe).permit(
       :name, :cpf, :email, :phone, :birthdate, :cns, :status,
-      endereco_attributes: [:cep, :logradouro, :numero, :complemento, :bairro, :cidade, :estado]
+      enderecos_attributes: [:zipcode, :street, :number, :complement, :district, :city, :state]
     )
   end
 end

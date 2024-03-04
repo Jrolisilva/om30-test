@@ -1,5 +1,5 @@
 class Endereco < ApplicationRecord
   belongs_to :municipe
 
-  validates :cep, :logradouro, :numero, :bairro, :cidade, :estado, presence: true
+  validates :zipcode, :street, :number, :district, :city, :state, presence: true
 end

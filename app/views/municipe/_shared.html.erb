@@ -36,47 +36,47 @@
   </div>
     <%= f.file_field :photo, class: 'form-control' %>
 
-  <%= f.fields_for :endereco do |e| %>
+  <%= f.fields_for :enderecos do |e| %>
     <h3> Endereço </h3>
     <div style="margin-top: 10px;">
-      <%= e.label :cep, "CEP" %>
+      <%= e.label :zipcode, "CEP" %>
     </div>
-      <%= e.text_field :cep, class: 'form-control' %>
+      <%= e.text_field :zipcode, class: 'form-control' %>
 
     <div style="margin-top: 10px;">
-      <%= e.label :logradouro, "Logradouro" %>
+      <%= e.label :street, "Logradouro" %>
     </div>
-      <%= e.text_field :logradouro, class: 'form-control' %>
+      <%= e.text_field :street, class: 'form-control' %>
 
     <div style="margin-top: 10px;">
-      <%= e.label :numero, "Número" %>
+      <%= e.label :number, "Número" %>
     </div>
-      <%= e.text_field :numero, class: 'form-control' %>
+      <%= e.text_field :number, class: 'form-control' %>
 
     <div style="margin-top: 10px;">
-      <%= e.label :complemento, "Complemento" %>
+      <%= e.label :complement, "Complemento" %>
     </div>
-      <%= e.text_field :complemento, class: 'form-control' %>
+      <%= e.text_field :complement, class: 'form-control' %>
 
     <div style="margin-top: 10px;">
-      <%= e.label :bairro, "Bairro" %>
+      <%= e.label :district, "Bairro" %>
     </div>
-      <%= e.text_field :bairro, class: 'form-control' %>
+      <%= e.text_field :district, class: 'form-control' %>
 
     <div style="margin-top: 10px;">
-      <%= e.label :cidade, "Cidade" %>
+      <%= e.label :city, "Cidade" %>
     </div>
-      <%= e.text_field :cidade, class: 'form-control' %>
+      <%= e.text_field :city, class: 'form-control' %>
 
     <div style="margin-top: 10px;">
-      <%= e.label :estado, "Estado" %>
+      <%= e.label :state, "Estado" %>
     </div>
-      <%= e.text_field :estado, class: 'form-control' %>
+      <%= e.text_field :state, class: 'form-control' %>
 
     <div style= "margin-top: 10px;">
-      <%= e.label :codigo_ibge, "Codigo IBGE" %>
+      <%= e.label :ibge_code, "Codigo IBGE" %>
     </div>
-      <%= e.text_field :codigo_ibge, class: 'form-control' %>
+      <%= e.text_field :ibge_code, class: 'form-control' %>
 
   <% end %>
 
