@@ -36,7 +36,7 @@
   </div>
     <%= f.file_field :photo, class: 'form-control' %>
 
-  <%= f.fields_for :enderecos do |e| %>
+  <%= f.fields_for :endereco do |e| %>
     <h3> Endereço </h3>
     <div style="margin-top: 10px;">
       <%= e.label :zipcode, "CEP" %>

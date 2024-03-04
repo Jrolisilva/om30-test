@@ -3,12 +3,15 @@ class MunicipeController < ApplicationController
 
   def index
     @municipe = Municipe.all
+
+    @municipe = Municipe.where(cpf: params[:cpf]) if params[:cpf]
   end
 
   def show; end
 
   def new
     @municipe = Municipe.new
+    @municipe.build_endereco
   end
 
   def create
@@ -39,8 +42,8 @@ class MunicipeController < ApplicationController
 
   def municipe_params
     params.require(:municipe).permit(
-      :name, :cpf, :email, :phone, :birthdate, :cns, :status,
-      enderecos_attributes: [:zipcode, :street, :number, :complement, :district, :city, :state]
+      :name, :cpf, :email, :phone, :photo, :birthdate, :cns, :status,
+      endereco_attributes: [:zipcode, :street, :number, :complement, :district, :city, :state, :ibge_code]
     )
   end
 end

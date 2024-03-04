@@ -6,6 +6,15 @@
 </div>
 
 <div>
+  <%= form_tag municipe_index_path, method: :get do %>
+    <h4>Pesquisar</h4>
+    <div style="margin-bottom: 10px">
+      <label for="name">CPF:</label>
+      <%= text_field_tag :cpf, params[:cpf] %>
+      <%= submit_tag 'Pesquisar', class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+
   <table>
     <thead>
       <tr>
