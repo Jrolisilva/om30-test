@@ -1,8 +1,9 @@
 class MunicipeController < ApplicationController
+  include MunicipeHelper
   before_action :set_municipe, only: %i[show edit update]
 
   def index
-    @municipe = Municipe.all
+    @municipe = Municipe.all.order(:name).limit(50)
 
     @municipe = Municipe.where(cpf: params[:cpf]) if params[:cpf]
   end
@@ -18,6 +19,7 @@ class MunicipeController < ApplicationController
     municipe = Municipe.new(municipe_params)
 
     if municipe.save
+      send_notification(municipe)
       render json: municipe, status: :created
     else
       render json: municipe.errors, status: :unprocessable_entity
@@ -27,10 +29,11 @@ class MunicipeController < ApplicationController
   def edit; end
 
   def update
-    if municipe.update(params[:municipe])
-      render json: municipe, status: :ok
+    if @municipe.update(municipe_params)
+      send_notification(@municipe)
+      render json: @municipe, status: :ok
     else
-      render json: municipe.errors, status: :unprocessable_entity
+      render json: @municipe.errors, status: :unprocessable_entity
     end
   end
 
@@ -41,7 +44,7 @@ class MunicipeController < ApplicationController
   end
 
   def municipe_params
-    params.require(:municipe).permit(
+    params.except(:id).require(:municipe).permit(
       :name, :cpf, :email, :phone, :photo, :birthdate, :cns, :status,
       endereco_attributes: [:zipcode, :street, :number, :complement, :district, :city, :state, :ibge_code]
     )
