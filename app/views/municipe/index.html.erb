@@ -37,7 +37,7 @@
           <td><%= municipe.cns %></td>
           <td><%= municipe.email %></td>
           <td><%= municipe.birthdate.strftime('%d/%m/%Y') %></td>
-          <td><%= "#{municipe.phone}" %></td>
+          <td><%= municipe.phone.gsub(/(\d{2})(\d{5})(\d{4})/, '(\1) \2-\3') %></td>
           <td><%= municipe.status %></td>
           <td><%= link_to "Editar", edit_municipe_path(municipe.id) %></td>
         </tr>
