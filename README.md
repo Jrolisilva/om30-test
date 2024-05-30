@@ -1,35 +1,33 @@
-## Test OM30 
-Este é um projeto Ruby on Rails configurado com Docker, facilitando a execução e desenvolvimento do aplicativo em diferentes ambientes.
+This is a Ruby on Rails project configured with Docker, making it easier to run and develop the application in different environments.
 
-Configuração do Ambiente
-Pré-requisitos
+Environment Setup
 
-Docker instalado
+Docker installed
 
-Docker Compose instalado
+Docker Compose installed
 
-Inicializando o Projeto
+Initializing the Project
 
-### Construir e iniciar os contêineres
+### Build and start the containers
 `docker-compose up -d --build`
 
-### Criar o banco de dados
+### Create the database
 `docker-compose exec web bin/rails db:create RAILS_ENV=development`
 
-### Executar migrações do banco de dados
+### Run database migrations
 `docker-compose exec web bin/rails db:migrate RAILS_ENV=development`
 
-### Preencher o banco de dados com dados iniciais
+### Seed the database with initial data
 `docker-compose exec web bin/rails db:seed RAILS_ENV=development`
 
-### Executando Testes acessar o shell dentro do contêiner
+### Running Tests
+Access the shell inside the container
 `docker exec -it om30-test-web-1 bash`
 
-### Executar os testes RSpec
-
+### Run RSpec tests
 `bundle exec rspec`
 
-### Parando e Removendo Contêineres
+### Stopping and Removing Containers
 `docker-compose down --volume`
 
 
